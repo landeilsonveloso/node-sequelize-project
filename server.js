@@ -1,8 +1,8 @@
 import app from "./src/app.js"
 import db from "./src/config/db.js"
 
-const port = process.env.MYSQL_PORT
+const PORT = process.env.PORT
 
 db.sync();
 
-app.listen(port, () => console.log(`Servidor iniciado na porta http://localhost:${port}`));
+app.listen(PORT, () => console.log(`Servidor iniciado em http://localhost:${PORT}`));
