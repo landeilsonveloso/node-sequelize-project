@@ -5,4 +5,4 @@ const PORT = process.env.PORT
 
 db.sync();
 
-app.listen(PORT, () => console.log(`Servidor iniciado em http://localhost:${PORT}`));
+app.listen(PORT, () => console.log(`Servidor iniciado em http://localhost:${PORT}`))

@@ -15,7 +15,7 @@ const User = db.define("User", {
   idade: {
     type: Sequelize.INTEGER,
     allowNull: false,
-  },
-});
+  }
+})
 
 export default User
