@@ -1,7 +1,7 @@
 {
-  "name": "sequelize-project",
+  "name": "nodejs-sequelize-project",
   "version": "1.0.0",
-  "description": "",
+  "description": "Nodejs project with sequelize",
   "main": "server.js",
   "type": "module",
   "scripts": {
@@ -9,15 +9,17 @@
     "dev": "nodemon server.js"
   },
   "keywords": [],
-  "author": "",
+  "author": "Landeilson Veloso",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.3.1",
-    "express": "^4.18.2",
-    "mysql2": "^3.6.1",
-    "sequelize": "^6.33.0"
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "pg": "^8.11.5",
+    "pg-hstore": "^2.3.4",
+    "sequelize": "^6.37.2"
   },
   "devDependencies": {
-    "nodemon": "^3.0.1"
+    "nodemon": "^3.1.0"
   }
 }

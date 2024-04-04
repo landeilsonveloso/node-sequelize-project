@@ -1,33 +1,73 @@
-import User from "../models/users.js";
+import User from "../models/users.js"
 
-const getUsers = async (_, res) => {
-    await User.findAll({attributes: ["id", "nome", "idade"]}).then((result) => res.json(result))
+export const create = async (req, res) => {
+    const {name, age} = req.body
+
+    try {
+        if (!name) {
+            res.status(400).json({message: "Campo name obrigatório!"})
+        }
+
+        else if (!age) {
+            res.status(400).json({message: "Campo age obrigatório!"})
+        }
+
+        await User.create({name: name, age: age})
+
+        return res.status(201).send("Usuário criado com sucesso!")
+
+    } catch (err) {
+        res.status(500).send(err)
+    }
 }
 
-const createUser = async (req, res) => {
-    const {nome, idade} = req.body
+export const findAll = async (_, res) => {
+    try {
+        const users = await User.findAll({attributes: ["id", "name", "age"]})
 
-    await User.create({nome: nome, idade: idade}).then((result) => res.json(result))
+        return res.status(200).send(users)
+        
+    } catch (err) {
+        res.status(500).send(err)
+    }
 }
 
-const updateUser = async (req, res) => {
+export const findOne = async (req, res) => {
     const id = req.params.id
-    const {nome, idade} = req.body
+    
+    try {
+        const user = await User.findOne({attributes: ["id", "name", "age"]}, {where: {id: id}})
 
-    await User.update({nome: nome, idade: idade}, {where: {id: id}})
-    await User.findByPk(id).then((result) => res.json(result))
+        return res.status(200).send(user)
+        
+    } catch (err) {
+        res.status(500).send(err.message)
+    }
 }
 
-const deleteUser = async (req, res) => {
+export const update = async (req, res) => {
+    const id = req.params.id
+    const {name, age} = req.body
+
+    try {
+        await User.update({name: name, age: age}, {where: {id: id}})
+
+        return res.status(200).send("Usuário atualizado com sucesso!")
+        
+    } catch (err) {
+        res.status(500).send(err)
+    }
+}
+
+export const destroy = async (req, res) => {
     const id = req.params.id
 
-    await User.destroy({where: {id: id}})
-    await User.findAll({attributes: ["id", "nome", "idade"]}).then((result) => res.json(result))
-}
+    try {
+        await User.destroy({where: {id: id}})
 
-export default {
-    getUsers,
-    createUser,
-    updateUser,
-    deleteUser
+        return res.status(200).send("Usuário excluido com sucesso!")
+        
+    } catch (err) {
+        res.status(500).send(err)
+    }
 }

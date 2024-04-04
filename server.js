@@ -1,8 +1,3 @@
 import app from "./src/app.js"
-import db from "./src/config/db.js"
 
-const PORT = process.env.PORT
-
-db.sync();
-
-app.listen(PORT, () => console.log(`Servidor iniciado em http://localhost:${PORT}`))
+app.listen(3030, () => console.log("Servidor iniciado em http://localhost:3030"))
