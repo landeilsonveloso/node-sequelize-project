@@ -1,21 +1,29 @@
-import Sequelize from "sequelize";
-import db from "../config/db.js";
+import database from "../config/database.js"
+import { DataTypes } from "sequelize"
 
-const User = db.define("User", {
+const User = database.define("User", {
   id: {
-    type: Sequelize.INTEGER,
-    primaryKey: true,
+    type: DataTypes.INTEGER,
     autoIncrement: true,
+    primaryKey: true
+  },
+
+  name: {
+    type: DataTypes.STRING,
     allowNull: false,
   },
-  nome: {
-    type: Sequelize.STRING,
+
+  email: {
+    type: DataTypes.STRING,
+    unique: true,
     allowNull: false,
-  },
-  idade: {
-    type: Sequelize.INTEGER,
-    allowNull: false,
+    validate: {isEmail: true}
   }
-})
+},
+
+  {
+    tableName: "users"
+  }
+)
 
 export default User

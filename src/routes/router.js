@@ -1,7 +1,7 @@
-import {Router} from "express";
-import userRouter from "./users.js";
+import {Router} from "express"
+import userRouter from "./users.js"
 
-const router = Router();
+const router = Router()
 
 router.use("/users", userRouter)
 

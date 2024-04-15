@@ -1,33 +1,58 @@
-import User from "../models/users.js";
+import User from "../models/users.js"
 
-const getUsers = async (_, res) => {
-    await User.findAll({attributes: ["id", "nome", "idade"]}).then((result) => res.json(result))
+export const create = async (user) => {
+    try {
+        const registeredUser = await User.findOne({where: {name: user.name}})
+
+        if (registeredUser) {
+            throw new Error("Usuário já cadastrado!")
+        }
+
+        await User.create(user)
+
+    } catch (err) {
+        throw new Error(err)
+    }
 }
 
-const createUser = async (req, res) => {
-    const {nome, idade} = req.body
+export const findAll = async () => {
+    try {
+        return await User.findAll({attributes: ["id", "name", "email"]})
 
-    await User.create({nome: nome, idade: idade}).then((result) => res.json(result))
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
 
-const updateUser = async (req, res) => {
-    const id = req.params.id
-    const {nome, idade} = req.body
+export const findByPk = async (id) => {
+    try {
+        return await User.findByPk(id, {attributes: ["id", "name", "email"]})
 
-    await User.update({nome: nome, idade: idade}, {where: {id: id}})
-    await User.findByPk(id).then((result) => res.json(result))
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
 
-const deleteUser = async (req, res) => {
-    const id = req.params.id
+export const update = async (id, user) => {
+    try {
+        const registeredUser = await User.findOne({where: {name: user.name}})
 
-    await User.destroy({where: {id: id}})
-    await User.findAll({attributes: ["id", "nome", "idade"]}).then((result) => res.json(result))
+        if (registeredUser && registeredUser.id !== id) {
+            throw new Error("Usuário já cadastrado!")
+        }
+
+        await User.update({name: user.name, email: user.email}, {where: {id: id}})
+
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
 
-export default {
-    getUsers,
-    createUser,
-    updateUser,
-    deleteUser
+export const destroy = async (id) => {
+    try {
+        await User.destroy({where: {id: id}})
+
+    } catch (err) {
+        throw new Error(err.message)
+    }
 }
