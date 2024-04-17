@@ -1,37 +1,27 @@
 {
   "name": "nodejs-express-project",
-
   "version": "2.0.0",
-
   "description": "Nodejs project with express, sequelize, jest and postgres",
-
   "keywords": [
     "nodejs", "express", "sequelize", "jest", "postgres", "crud"
   ],
-
   "repository": {
     "type": "git",
     "url": "https://github.com/landeilsonveloso/nodejs-express-project"
   },
-
   "author": {
     "name": "Landeilson Veloso",
     "email": "landeilsonveloso2022@gmail.com",
     "url": "https://landeilsonveloso.github.io"
   },
-
   "license": "ISC",
-
   "main": "server.js",
-
   "type": "module",
-
   "scripts": {
     "start": "nodemon server.js",
     "dev": "nodemon server.js",
     "test": "jest"
   },
-
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -40,7 +30,6 @@
     "pg-hstore": "^2.3.4",
     "sequelize": "^6.37.2"
   },
-
   "devDependencies": {
     "@babel/core": "^7.24.4",
     "@babel/preset-env": "^7.24.4",
