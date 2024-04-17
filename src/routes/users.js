@@ -3,7 +3,7 @@ import { Router } from "express"
 
 const userRouter = Router()
 
-userRouter.post("/create", async(req, res) => {
+userRouter.post("/", async (req, res) => {
     try {
         const {name, email} = req.body
 
@@ -25,7 +25,7 @@ userRouter.post("/create", async(req, res) => {
     }
 })
 
-userRouter.get("/findAll", async(_, res) => {
+userRouter.get("/", async (_, res) => {
     try {
         const users = await findAll()
 
@@ -37,7 +37,7 @@ userRouter.get("/findAll", async(_, res) => {
     }
 })
 
-userRouter.get("/findByPk/:id", async(req, res) => {
+userRouter.get("/:id", async (req, res) => {
     try {
         const id = req.params.id
 
@@ -51,7 +51,7 @@ userRouter.get("/findByPk/:id", async(req, res) => {
     }
 })
 
-userRouter.put("/update/:id", async(req, res) => {
+userRouter.put("/:id", async (req, res) => {
     try {
         const id = req.params.id
         const {name, email} = req.body
@@ -74,7 +74,7 @@ userRouter.put("/update/:id", async(req, res) => {
     }
 })
 
-userRouter.delete("/destroy/:id", async(req, res) => {
+userRouter.delete("/:id", async (req, res) => {
     try {
         const id = req.params.id
 
